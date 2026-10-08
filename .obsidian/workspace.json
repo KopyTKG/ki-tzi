@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Pr-1.md",
+                "file": "Cv-1.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Pr-1"
+              "title": "Cv-1"
             }
           }
         ]
@@ -99,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Pr-1.md",
+                "file": "Cv-1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Pr-1.md",
+                "file": "Cv-1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -161,7 +161,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Pr-1.md",
+                "file": "Cv-1.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -192,6 +192,8 @@
   "lastOpenFiles": [
     "TZI teorie_221122_123110.pdf",
     "TZI cvičení _251002_134504.pdf",
-    "Pr-1.md"
+    "Pr-1.md",
+    "Cv-1.md",
+    "Cv-2.md"
   ]
 }

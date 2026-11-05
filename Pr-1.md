@@ -1,4 +1,9 @@
-> Date = 1.10 2026
+---
+date: 2026-10-01
+tags:
+  - prednaska
+---
+
 ## Ciselne soustavy
 def: Ciselna soustava je zpusob reprezentace cisel. Cisla danne soustavy se tvori z usporadane mnoziny symbolu, ktere se nazivaji cislice. Delime je na pozicni a nepozicni.
 

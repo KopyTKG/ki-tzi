@@ -1,125 +1,81 @@
-# Konečný automat
-
-$$A = (Q, \Sigma, \delta, q_0, F)$$
-
-- $Q = \{q_1, \dots, q_n\}$ – konečná množina **stavů**
-- $\Sigma = \{a_1, a_2, \dots, a_m\}$ – **vstupní abeceda**
-- $\delta \colon Q \times \Sigma \to Q$ – **přechodová funkce**, $\delta(q, a) = q'$, kde $q, q' \in Q$, $a \in \Sigma$
-- $q_0 \in Q$ – **počáteční stav**
-- $F \subseteq Q$ – množina **koncových** (přijímajících) **stavů**
-
-Činnost: řídicí jednotka (ŘJ) ve stavu $q_i$ čte z pásky vstupní symbol $a_j$ a přejde do stavu $q_k$, tj. $(q_i, a_j) \to q_k$. Páska: $a_1 \mid a_2 \mid \dots \mid a_m$.
-
-$\delta$ každé dvojici $(q_i, a_j) \in Q \times \Sigma$ přiřadí právě jeden stav z $Q$.
-
-## Způsoby zadání automatu
-1. Přechodová funkce
-2. Tabulka
-3. Stavový diagram
-4. Stavový strom
-
-## Příklad 1
-$Q = \{q_0, q_1, q_2, q_3\}$, $\Sigma = \{0, 1\}$, počáteční stav $q_0$, $F = \{q_1, q_2\}$
-
-### 1. Přechodová funkce
-$$\delta(q_0, 0) = q_0, \quad \delta(q_0, 1) = q_2$$
-$$\delta(q_1, 0) = q_1, \quad \delta(q_1, 1) = q_3$$
-$$\delta(q_2, 0) = q_1, \quad \delta(q_2, 1) = q_3$$
-$$\delta(q_3, 0) = q_1, \quad \delta(q_3, 1) = q_3$$
-
-### 2. Tabulka
-Šipka $\to$ označuje počáteční stav, šipka $\leftarrow$ koncový stav.
-
-|                 | 0     | 1     |
-| --------------- | ----- | ----- |
-| $\to q_0$       | $q_0$ | $q_2$ |
-| $\leftarrow q_1$ | $q_1$ | $q_3$ |
-| $\leftarrow q_2$ | $q_1$ | $q_3$ |
-| $q_3$           | $q_1$ | $q_3$ |
-
-### 3. Stavový diagram
-```mermaid
-stateDiagram-v2
-    [*] --> q0
-    q0 --> q0: 0
-    q0 --> q2: 1
-    q2 --> q1: 0
-    q2 --> q3: 1
-    q1 --> q1: 0
-    q1 --> q3: 1
-    q3 --> q1: 0
-    q3 --> q3: 1
-    q1 --> [*]
-    q2 --> [*]
-```
-
-### 4. Stavový strom
-Kořen je počáteční stav $q_0$, z každého uzlu vede hrana pro každý symbol z $\Sigma$.
-
-```mermaid
-flowchart TD
-    A(["→ q0"]) -->|0| B(["q0"])
-    A -->|1| C["q2 →"]
-    C -->|0| D["q1 →"]
-    C -->|1| E(["q3"])
-    D -->|0| F["q1 →"]
-    D -->|1| G(["q3"])
-    E -->|0| H["q1 →"]
-    E -->|1| I(["q3"])
-    classDef fin fill:#2e7d32,stroke:#1b5e20,color:#fff,stroke-width:3px
-    class C,D,F,H fin
-```
-Uzly označené šipkou „→“ za názvem (zelené) jsou koncové stavy ($\in F$), šipka „→ q0“ před názvem je počáteční stav.
-
-### Zpracování slova $1011010$
-| vstup | 1     | 0     | 1     | 1     | 0     | 1     | 0     |
-| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
-| stav  | $q_2$ | $q_1$ | $q_3$ | $q_3$ | $q_1$ | $q_3$ | $q_1$ |
-
-Začínáme v $q_0$ a končíme v $q_1 \in F$, takže slovo automat **přijímá**.
-
+---
+date: 2026-10-22
+tags:
+  - prednaska
 ---
 
-# Doplňující teorie (dopsáno z hlavy, ne z tabule)
+> [!warning] Sestaveno zpětně z `Cv-4.md`
+> Z této přednášky nemám vlastní poznámky. Obsah je odvozen z látky, kterou procvičuje [[Cv-4]] (cvičení bylo po přednášce), a navazuje na [[Pr-2]] a [[Pr-3]]. Co na přednášce opravdu zaznělo, může být jinak, a podle PDF z Downloads se probíral i disjunktní rozklad, třídy ekvivalence a zobrazení, které tu nejsou.
 
-> [!note] Tohle není z přednášky ani z fotek. Je to standardní teorie ke konečným automatům, která navazuje na probranou látku. Až se objeví na tabuli, porovnat a případně opravit značení.
+# Důkaz implikace $X \implies Y$
 
-## Deterministický konečný automat (DKA)
-Automat $A = (Q, \Sigma, \delta, q_0, F)$ z minulé hodiny je **deterministický**, protože $\delta$ je funkce: pro každý stav a každý symbol existuje **právě jeden** následující stav. Proto je v tabulce v každém políčku právě jeden stav a ze stavu vede v diagramu pro každý symbol právě jedna šipka.
+Implikace $X \implies Y$ je nepravdivá jen v jediném případě: $X$ platí a $Y$ neplatí.
 
-## Zobecněná (rozšířená) přechodová funkce $\delta^*$
-Učitel ji značí $\delta^*$ (v jiné literatuře také $\hat\delta$). Podmínky 1 a 2 níže odpovídají tabuli (viz [[Pr-5]]).
-Funkce $\delta$ zpracuje jen jeden symbol. Pro celé slovo ji rozšíříme na $\delta^* \colon Q \times \Sigma^* \to Q$:
+| $X$ | $Y$ | $X \implies Y$ |
+| --- | --- | -------------- |
+| 1   | 1   | 1              |
+| 1   | 0   | 0              |
+| 0   | 1   | 1              |
+| 0   | 0   | 1              |
 
-$$\delta^*(q, \varepsilon) = q$$
-$$\delta^*(q, wa) = \delta(\delta^*(q, w), a), \quad w \in \Sigma^*, \; a \in \Sigma$$
+Dokazovat lze třemi způsoby: přímo, nepřímo (obměnou) a sporem.
 
-**Definice (zobecněná přechodová funkce).** Pro automat $A = (Q, \Sigma, \delta, q_0, F)$ je zobecněná přechodová funkce zobrazení $\delta^* \colon Q \times \Sigma^* \to Q$ definované indukcí podle délky slova:
-1. $\delta^*(q, \varepsilon) = q$ pro každé $q \in Q$
-2. $\delta^*(q, wa) = \delta(\delta^*(q, w), a)$ pro $q \in Q$, $w \in \Sigma^*$, $a \in \Sigma$
+## Tranzitivní zákon
+Relace $>$ je tranzitivní:
+$$a > b \land b > c \implies a > c$$
 
-Na jednosymbolovém slově splývá s $\delta$: $\delta^*(q, a) = \delta(\delta^*(q,\varepsilon), a) = \delta(q, a)$.
+Příklad: $n > 5 \implies n > 3$ plyne z $n > 5 > 3$ (dosadíme $a = n$, $b = 5$, $c = 3$ a $5 > 3$ platí vždy). Indukce tu není potřeba.
 
-Ekvivalentně lze číst slovo zleva: $\delta^*(q, aw) = \delta^*(\delta(q, a), w)$.
+## Přímý důkaz
+1. Předpokládáme, že platí $X$.
+2. Řadou správných kroků (definice, již dokázaná tvrzení, např. tranzitivní zákon) z $X$ odvodíme $Y$.
+3. Tím je dokázáno $X \implies Y$.
 
-Příklad 1, slovo $10$: $\delta^*(q_0, 10) = \delta(\delta^*(q_0, 1), 0) = \delta(\delta(q_0,1), 0) = \delta(q_2, 0) = q_1$.
+$$X \implies X_1 \implies X_2 \implies \dots \implies Y$$
 
-Význam: $\delta^*(q, w)$ je stav, ve kterém automat skončí, když začne ve stavu $q$ a přečte celé slovo $w$. Řádek „vstup / stavy“ na tabuli je přesně výpočet $\delta^*$ krok za krokem.
+Příklad: $n \in \mathbb{N}$, $n$ sudé $\implies n^2$ sudé.
+$n = 2k$, tedy $n^2 = 4k^2 = 2 \cdot (2k^2)$, což je sudé číslo.
 
-## Přijímání slova a jazyk automatu
-Slovo $w$ je **přijato**, když $\delta^*(q_0, w) \in F$. Jazyk automatu:
+## Nepřímý důkaz (obměnou)
+Implikace je ekvivalentní své obměně:
+$$X \implies Y \;\equiv\; \lnot Y \implies \lnot X$$
 
-$$L(A) = \{ w \in \Sigma^* \mid \delta^*(q_0, w) \in F \}$$
+| $X$ | $Y$ | $\lnot X$ | $\lnot Y$ | $X \implies Y$ | $\lnot Y \implies \lnot X$ |
+| --- | --- | --------- | --------- | -------------- | -------------------------- |
+| 1   | 1   | 0         | 0         | 1              | 1                          |
+| 1   | 0   | 0         | 1         | 0              | 0                          |
+| 0   | 1   | 1         | 0         | 1              | 1                          |
+| 0   | 0   | 1         | 1         | 1              | 1                          |
 
-- Prázdné slovo $\varepsilon$ je přijato právě tehdy, když $q_0 \in F$.
-- Slovo, které není přijato, je **zamítnuto** (skončí ve stavu mimo $F$).
+Poslední dva sloupce se shodují, proto stačí dokázat obměnu.
 
-## Jazyk příkladu 1
-Dokud se čtou nuly, zůstává automat v $q_0 \notin F$. První jednička vede do $q_2 \in F$. Potom je stav určen posledním přečteným symbolem: po $0$ je to $q_1 \in F$, po $1$ je to $q_3 \notin F$. Proto
+Příklad: $x > 5 \implies x > 3$. Obměna: $x \leq 3 \implies x \leq 5$, a to platí, protože $x \leq 3 \leq 5$.
 
-$$L(A) = \{ 0^k 1 \mid k \geq 0 \} \cup \{ w \in \{0,1\}^* \mid w \text{ obsahuje } 1 \text{ a končí } 0 \}$$
+## Důkaz sporem
+Implikace $X \implies Y$ je nepravdivá jen v případě $X \land \lnot Y$, takže stačí ukázat, že tento případ nemůže nastat.
 
-tedy slovo je přijato, když buď je tvaru $0^k 1$, nebo obsahuje alespoň jednu jedničku a končí nulou. Slovo $1011010$ končí nulou a obsahuje jedničku, takže je přijato. To souhlasí s tabulí.
+1. Předpokládáme opak toho, co chceme dokázat: platí $X$ a zároveň $\lnot Y$.
+2. Odvodíme spor, tedy tvrzení, které neplatí (např. $5 < 3$).
+3. Předpoklad $X \land \lnot Y$ je nepravdivý, a proto platí $X \implies Y$.
 
-## Úplný automat
-Automat je **úplný**, když je $\delta$ definovaná pro všechny dvojice $(q, a) \in Q \times \Sigma$. Příklad 1 i příklad 2 (dveře) jsou úplné. Všechny čtyři způsoby zadání (funkce, tabulka, diagram, strom) popisují tentýž automat.
+| $X$ | $Y$ | $\lnot Y$ | $X \land \lnot Y$ | $\lnot(X \land \lnot Y)$ | $X \implies Y$ |
+| --- | --- | --------- | ----------------- | ------------------------ | -------------- |
+| 1   | 1   | 0         | 0                 | 1                        | 1              |
+| 1   | 0   | 1         | 1                 | 0                        | 0              |
+| 0   | 1   | 0         | 0                 | 1                        | 1              |
+| 0   | 0   | 1         | 0                 | 1                        | 1              |
+
+Příklad: $x > 5 \implies x > 3$. Předpokládejme $x > 5 \land x \leq 3$. Pak $5 < x \leq 3$, tedy $5 < 3$, což je spor.
+
+# Matematická indukce
+Používá se, když tvrzení $V(n)$ závisí na $n \in \mathbb{N}$ a dokazujeme ho pro **všechna** $n \geq 1$, např. u součtu s proměnným počtem sčítanců. Na rozdíl od nerovnosti $n > 5 \implies n > 3$ tady indukci opravdu potřebujeme.
+
+1. **Základ:** ověříme $V(1)$.
+2. **Indukční předpoklad:** předpokládáme $V(k)$ pro nějaké $k \geq 1$.
+3. **Indukční krok:** z $V(k)$ dokážeme $V(k+1)$.
+4. **Závěr:** $V(n)$ platí pro všechna $n \geq 1$.
+
+Příklad: $1 + 2 + \dots + n = \dfrac{n(n+1)}{2}$. Základ: $1 = \dfrac{1 \cdot 2}{2}$. Krok: k oběma stranám předpokladu přičteme $k+1$:
+$$\frac{k(k+1)}{2} + (k+1) = \frac{(k+1)(k+2)}{2}$$
+
+Podrobně, včetně všech kroků: [[Cv-4]] a [[Cv-5]].

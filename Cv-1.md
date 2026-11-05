@@ -1,5 +1,8 @@
-
-> date = 1.10 2026
+---
+date: 2026-10-01
+tags:
+  - cviceni
+---
 
 # Info
 - max 3 absence

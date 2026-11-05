@@ -1,3 +1,8 @@
+---
+date: 2026-10-08
+tags:
+  - prednaska
+---
 
 # Vyrokova logika
 vyrokem nazyvame vetu konkterniho jazyka ktere je mozno priradit prave jednu pradivnostni hodnotu: True / False

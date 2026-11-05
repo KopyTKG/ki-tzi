@@ -1,3 +1,9 @@
+---
+date: 2026-10-15
+tags:
+  - prednaska
+---
+
 # Indukce
 je metoda dokazovani tvrzeni $V(n)$ ktere zavisi na $n$
 $V(n), n; n \geq 1$ 
@@ -7,6 +13,34 @@ chceme dokazat ze Vn plati pro veskera cisla
 2. $k \geq 1; V(k)$
 3. $k +1$
 4. $V(n) = V(k+1); n \geq 1$
+
+## Příklad: důkaz indukcí
+> [!note] Doplněno (Claude), není z přednášky. Příklady jsou stejného typu jako v [[Cv-4]] a [[Cv-5]].
+
+Dokažme, že součet prvních $n$ lichých čísel je $n^2$:
+$$V(n):\; 1 + 3 + 5 + \dots + (2n-1) = n^2, \quad n \geq 1$$
+
+1. **Základ** $n = 1$: $L = 1$, $P = 1^2 = 1$, tedy $L = P$.
+2. **Indukční předpoklad** $k \geq 1$: platí $1 + 3 + \dots + (2k-1) = k^2$.
+3. **Indukční krok** $k+1$: k oběma stranám přičteme další liché číslo $2(k+1)-1 = 2k+1$:
+$$1 + 3 + \dots + (2k-1) + (2k+1) = k^2 + 2k + 1 = (k+1)^2$$
+   To je přesně $V(k+1)$.
+4. **Závěr:** základ platí a z $V(k)$ plyne $V(k+1)$, takže $V(n)$ platí pro všechna $n \geq 1$.
+
+# Důkaz sporem
+> [!note] Doplněno (Claude), není z přednášky. Teorie je v [[Pr-4]] a [[Teorie]].
+
+Chceme dokázat $X \implies Y$. Implikace je nepravdivá jen v případě $X \land \lnot Y$, takže:
+
+1. Předpokládáme **opak** toho, co dokazujeme: platí $X$ a zároveň $\lnot Y$.
+2. Z toho odvodíme **spor**, tedy tvrzení, které neplatí (např. $5 < 3$, nebo $a$ je zároveň sudé i liché).
+3. Předpoklad $X \land \lnot Y$ je tedy nepravdivý, a proto platí $X \implies Y$.
+
+**Příklad 1:** $x > 5 \implies x > 3$.
+Předpokládejme $x > 5 \land x \leq 3$. Pak $5 < x \leq 3$, tedy $5 < 3$, což je spor.
+
+**Příklad 2:** $\sqrt{2}$ je iracionální.
+Předpokládejme opak: $\sqrt{2} = \dfrac{p}{q}$, kde $p, q \in \mathbb{N}$ jsou nesoudělná. Pak $2q^2 = p^2$, takže $p^2$ je sudé, a tedy i $p$ je sudé, $p = 2r$. Dosazením $2q^2 = 4r^2$, tedy $q^2 = 2r^2$ a $q$ je také sudé. Obě čísla $p, q$ jsou sudá, tedy soudělná, což je spor s nesoudělností. Proto $\sqrt{2}$ není racionální.
 
 # Mnozina
 souhrn nejakych obj (mnoziny), chapany jako samostatny object (celek).

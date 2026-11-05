@@ -1,3 +1,9 @@
+---
+date: 2026-10-29
+tags:
+  - cviceni
+---
+
 # Indukce
 Dokazujeme tvrzení $V(m): 1 + 2 + \dots + m = \dfrac{m(m+1)}{2}$ pro všechna $m \geq 1$.
 

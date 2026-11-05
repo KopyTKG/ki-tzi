@@ -307,9 +307,9 @@ Podmínka $x \geq 2$. Pravá strana $= 4$. Levá: $\frac{(x+1)x}{2} + \frac{x(x-
 ---
 
 ## 10 Konečné automaty a jazyky
-(*Pr-4*, *Pr-5*)
+(*Pr-5*, *Pr-6*)
 
-Podrobně, včetně příkladů a diagramů: [[Pr-4]] (automat) a [[Pr-5]] (slova a jazyky).
+Podrobně, včetně příkladů a diagramů: [[Pr-5]] (automat, 29. 10.) a [[Pr-6]] (slova a jazyky, 5. 11.).
 
 ### Abeceda, slova, jazyky
 - **Abeceda** $\Sigma$ – neprázdná konečná množina symbolů, např. $\{0,1\}$, $\{a,b,c\}$.

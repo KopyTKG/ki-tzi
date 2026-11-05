@@ -1,3 +1,9 @@
+---
+date: 2026-10-22
+tags:
+  - cviceni
+---
+
 # Tranzitivní zákon
 Tvrzení $n > 5 \implies n > 3$ není potřeba dokazovat indukcí, plyne přímo z tranzitivity relace $>$.
 

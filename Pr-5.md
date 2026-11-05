@@ -3,15 +3,15 @@ sigma+ def
 
 ---
 
-# Příklad 2 – automatická brána
+# Příklad 2 – automatické dveře
 
-Dvě polohy brány, např. na schématu úsečky:
+Dvě polohy dveří, např. na schématu úsečky:
 - **zavřené** – stav $q_0$
 - **otevřené** – stav $q_1$
 
 Vstupní symboly:
 - nikdo není – $0$
-- je před (bránou) – $1$
+- je před (dveřmi) – $1$
 
 $Q = \{q_0, q_1\}$, $\Sigma = \{0, 1\}$, počáteční stav $q_0$, $F = \{q_1\}$
 
@@ -49,7 +49,7 @@ Uzly označené šipkou „→“ za názvem (zelené) jsou koncové stavy ($\in
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | stav  | $q_0$ | $q_1$ | $q_0$ | $q_0$ | $q_1$ |
 
-Končíme v $q_1 \in F$, takže slovo automat **přijímá** (brána je na konci otevřená).
+Končíme v $q_1 \in F$, takže slovo automat **přijímá** (dveře jsou na konci otevřené).
 
 # Slova nad abecedou
 
@@ -84,6 +84,8 @@ $$\varepsilon u = u \varepsilon = u$$
 
 # Jazyk nad abecedou $\Sigma$
 
+> [!note] Co je z tabule a co doplněno: z tabule je $L \subseteq \Sigma^*$ (a $L(A)$ níže). Příklady $\emptyset$, $\{\varepsilon\}$, $\Sigma^*$ a $L = \{0, 01, \dots\}$ jsou **doplněné z hlavy**, ne z tabule.
+
 **Jazyk** $L$ nad abecedou $\Sigma$ je libovolná množina slov nad $\Sigma$, tj. libovolná podmnožina $\Sigma^*$:
 
 $$L \subseteq \Sigma^*$$
@@ -92,7 +94,7 @@ $$L \subseteq \Sigma^*$$
 - $L = \{\varepsilon\}$ je jazyk obsahující pouze prázdné slovo (není to totéž co $\emptyset$)
 - $L = \Sigma^*$ je jazyk všech slov nad $\Sigma$
 
-Příklad: pro $\Sigma = \{0, 1\}$ je $L = \{0, 01, 011, 0111, \dots\}$ jazyk slov začínajících nulou.
+Příklad: pro $\Sigma = \{0, 1\}$ je $L = \{0, 01, 011, 0111, \dots\} = \{ 0 \cdot 1^n \mid n \geq 0 \}$ jazyk slov, která začínají nulou a **následují už jen jedničky** (např. $00 \notin L$).
 
 ## Jazyk přijímaný automatem
 Automat $A = (Q, \Sigma, \delta, q_0, F)$ přijímá slovo $w$, jestliže po jeho přečtení z $q_0$ skončí ve stavu z $F$. Jazyk přijímaný automatem $A$ je množina všech přijímaných slov:
@@ -147,7 +149,7 @@ $$\delta(q_0, 0) = q_1, \qquad \delta(q_1, 1) = q_1, \qquad \delta(q_1, 0) = q_3
 $$\delta^*(q_0, 010) = q_3 \in F$$
 Slovo $010$ je tedy přijato, $010 \in L(A)$. Ve výpočtu se $\delta^*$ rozepíše po symbolech: $\delta^*(q_0, 010) = \delta(\delta(\delta(q_0, 0), 1), 0) = \delta(\delta(q_1, 1), 0) = \delta(q_1, 0) = q_3$.
 
-Automat z tohoto příkladu není na tabuli zadán celý, vidíme jen tyto tři přechody.
+Jde o **jiný, částečně zadaný automat** než příklady 1 ($q_0$–$q_3$) a 2 (dveře). Na tabuli vidíme jen tyto tři přechody.
 
 **Prázdné slovo:** $\varepsilon \in L(A) \iff q_0 \in F$. Proto se v ekvivalenci výše bere $w \in \Sigma^+$ zvlášť.
 
@@ -171,7 +173,7 @@ Označení „↔“ znamená počáteční i koncový stav zároveň, proto je 
 Pojmy $\delta^*$, přijímání slova a $L(A)$ jsou vysvětleny v [[Pr-4]].
 
 ## Jazyk příkladu 2
-**Příklad 2 (brána):** $q_1$ je stav „naposledy bylo na vstupu $1$“, $q_0$ je stav „naposledy $0$“ (a na začátku). Proto
+**Příklad 2 (dveře):** $q_1$ je stav „naposledy bylo na vstupu $1$“, $q_0$ je stav „naposledy $0$“ (a na začátku). Proto
 
 $$L(A) = \{ w \in \{0,1\}^+ \mid w \text{ končí symbolem } 1 \}$$
 

@@ -122,4 +122,4 @@ $$L(A) = \{ 0^k 1 \mid k \geq 0 \} \cup \{ w \in \{0,1\}^* \mid w \text{ obsahuj
 tedy slovo je přijato, když buď je tvaru $0^k 1$, nebo obsahuje alespoň jednu jedničku a končí nulou. Slovo $1011010$ končí nulou a obsahuje jedničku, takže je přijato. To souhlasí s tabulí.
 
 ## Úplný automat
-Automat je **úplný**, když je $\delta$ definovaná pro všechny dvojice $(q, a) \in Q \times \Sigma$. Příklad 1 i příklad 2 (brána) jsou úplné. Všechny čtyři způsoby zadání (funkce, tabulka, diagram, strom) popisují tentýž automat.
+Automat je **úplný**, když je $\delta$ definovaná pro všechny dvojice $(q, a) \in Q \times \Sigma$. Příklad 1 i příklad 2 (dveře) jsou úplné. Všechny čtyři způsoby zadání (funkce, tabulka, diagram, strom) popisují tentýž automat.
